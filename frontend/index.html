@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skin Overlay Generator</title>
+
+    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="styles/fonts/fonts.css">
+    <link rel="stylesheet" href="styles/icons/css/boxicons.css">
+
+    <link rel="icon" type="image/x-icon" href="img/icon.svg">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+</head>
+<body>
+    
+    <div class="app-wrapper">
+        <div class="skin-viewer" id="skin-viewer">
+
+        </div>
+        <div class="skin-settings">
+            <h1>Skin Overlay Generator</h1>
+            <div class="user card">
+                <h3>Select skin</h3>
+                <div class="input">
+                    <input type="text" placeholder="Minecraft username...">
+                    <input type="file">
+                </div>
+            </div>
+            <div class="skin-type card">
+                <h3>Select skin type</h3>
+                <div class="input">
+                    <select id="skin-type" name="skin-type">
+                        <option>Slim (Alex)</option>
+                        <option>Wide (Steve)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="paint-type card">
+                <h3>Select skin overlay</h3>
+                <div class="input">
+                    <div id="generate-1" class="paint-entry">
+                        <img src="img/geile_maid.png">
+                        <h2>Maid-Kostüm</h2>
+                    </div>
+    
+                    <div class="paint-entry">
+                        <img src="img/geile_maid.png">
+                        <h2>Maid-Kostüm</h2>
+                    </div>
+    
+                    <div class="paint-entry">
+                        <img src="img/geile_maid.png">
+                        <h2>Maid-Kostüm</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="download">
+                <button id="download" class="button shiny"><i class='bx bx-cloud-download'></i> Download</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script type="module" src="http://37.114.56.63:3300/libs/skibidiRenderer.js"></script>
+</body>
+</html>
