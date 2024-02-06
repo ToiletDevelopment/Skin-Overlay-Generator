@@ -1,2 +1,1 @@
-# Skin-Overlay
-Minecraft Skin Overlay Generator
+# Skin Overlay Generator
