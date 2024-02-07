@@ -1,5 +1,5 @@
-<div style="text-align: center">
-  <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" style="text-align: center; width:40rem">
+<div align="center">
+  <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" width="500px"">
 </div>
 
 ---
@@ -13,6 +13,10 @@ Skin Overlay Generator is a NodeJS based tool, that allows users to customize th
 # Contributors
 **Frontend:**
 - Gebuildet
+- MaximDe
   
 **Backend:**
 - MaximDe
+
+**Idea**
+- JX_Snack
