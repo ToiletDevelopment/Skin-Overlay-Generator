@@ -63,8 +63,8 @@ app.post('/generate', async (req, res) => {
 
     stream.pipe(out);
     out.on('finish', () => {
-        res.json({ success: true, url: `http://37.114.56.63:${PORT}/${fileName}` });
-        sendWebhook(config.webhookURL, "Someone generated a skin!", `http://37.114.56.63:${PORT}/${fileName}`);
+        res.json({ success: true, url: `https://toilet-api.botpanel.de:${PORT}/${fileName}` });
+        sendWebhook(config.webhookURL, "Someone generated a skin!", `https://toilet-api.botpanel.de:${PORT}/${fileName}`);
         setTimeout(() => {
             fs.unlink(fileName, (err) => {
                 if (err) {
