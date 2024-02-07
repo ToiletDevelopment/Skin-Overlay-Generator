@@ -1,4 +1,4 @@
-# ULTIMATE TOILET LICENCE
+# ULTIMATE TOILET LICENSE
 
 **Copyright (c) 2024 ToiletDevelopment**
 
