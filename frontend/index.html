@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skin Overlay Generator</title>
+
+    <link rel="stylesheet" href="styles/css/style.css">
+    <link rel="stylesheet" href="styles/fonts/fonts.css">
+    <link rel="stylesheet" href="styles/icons/css/boxicons.css">
+
+    <link rel="icon" type="image/x-icon" href="img/icon.svg">
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+</head>
+<body>
+<div class="app-wrapper">
+
+    <div class="skin-viewer" id="skin-viewer">
+
+    </div>
+
+    <div class="skin-settings">
+        <div id="notification-container" class="notification-container"></div>
+        <h1>Skin Overlay Generator</h1>
+        <div class="user card">
+            <h3>Select skin</h3>
+            <div class="input">
+                <input type="text" placeholder="Minecraft username...">
+                <input type="file">
+            </div>
+        </div>
+        <div class="skin-type card">
+            <h3>Select skin type</h3>
+            <div class="input">
+                <select id="skin-type" name="skin-type">
+                    <option>Fat (Steve)</option>
+                    <option>Slim (Alex)</option>
+                </select>
+            </div>
+        </div>
+        <div class="paint-type card">
+            <h3>Select skin overlay</h3>
+            <div class="input">
+                <div id="old_man" class="paint-entry">
+                    <img src="img/overlays/old_man.png">
+                    <h2>Old Man 💀</h2>
+                </div>
+
+                <div id="bikini_girl" class="paint-entry">
+                    <img src="img/overlays/bikini_girl.png">
+                    <h2>Sexy Bikini Girl 😏</h2>
+                </div>
+
+                <div id="nextfight" class="paint-entry">
+                    <img src="img/overlays/nextfight.png">
+                    <h2>NextFight 😎</h2>
+                </div>
+
+                <div id="uroria" class="paint-entry">
+                    <img src="img/overlays/uroria.png">
+                    <h2>Uroria 🤩</h2>
+                </div>
+
+                <div id="mojang" class="paint-entry">
+                    <img src="img/overlays/mojang.png">
+                    <h2>Mojang 👁️👁️</h2>
+                </div>
+            </div>
+        </div>
+        <div class="download">
+            <button id="download" class="button shiny"><i class='bx bx-cloud-download'></i> Download</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="https://toilet-api.botpanel.de/libs/SkibidiSkinRenderer.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
