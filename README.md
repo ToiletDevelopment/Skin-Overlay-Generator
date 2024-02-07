@@ -5,7 +5,7 @@
 ---
 
 # About this Project
-**Skin Overlay Generator** is a NodeJS based tool, that allows users to customize their skin with overlay that are based on different themes.  
+**Skin Overlay Generator** is a NodeJS based tool, that allows users to customize their skin with overlays that are based on different themes.  
 Our tool can be used to customize skins for different occasions such as April Fools' Day or Christmas.
 
 <details>
