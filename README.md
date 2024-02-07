@@ -34,4 +34,4 @@ Our tool can be used to customize skins for different occasions such as April Fo
 - MaximDe
 
 **Idea**
-- [JX_Snack](https://extras.snackbag.net/maidify)
+- [JX_Snack's Maidify](https://link.snackbag.net/maidify)
