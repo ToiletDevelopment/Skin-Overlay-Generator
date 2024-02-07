@@ -27,11 +27,11 @@ Our tool can be used to customize skins for different occasions such as April Fo
 
 # Contributors
 **Frontend:**
-- Gebuildet
-- MaximDe
+- [@Gebuildet](https://github.com/gebuildet)
+- [@MaximDe](https://github.com/max1mde)
   
 **Backend:**
-- MaximDe
+- [@MaximDe](https://github.com/max1mde)
 
 **Idea**
 - [JX_Snack's Maidify](https://link.snackbag.net/maidify)
