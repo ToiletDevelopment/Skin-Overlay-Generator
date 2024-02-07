@@ -1,6 +1,18 @@
 <div align="center">
   <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" width="500px"">
 </div>
+<br>
+<div align="center">
+    <a href="https://github.com/ToiletDevelopment/Skin-Overlay/blob/main/LICENSE.md">
+      <img src="https://img.shields.io/badge/LICENSE-CC02CC" alt="Version">
+    </a>
+      <a href="https://github.com/ToiletDevelopment/Skin-Overlay/stargazers">
+            <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
+      </a>
+        <a href="https://github.com/ToiletDevelopment/Skin-Overlay/forks">
+              <img alt="GitHub forks" src="https://img.shields.io/github/forks/ToiletDevelopment/Skin-Overlay">
+        </a>
+</div>
 
 ---
 
