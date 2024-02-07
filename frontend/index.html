@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles/fonts/fonts.css">
     <link rel="stylesheet" href="styles/icons/css/boxicons.css">
 
-    <link rel="icon" type="image/x-icon" href="img/icon.svg">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png">
 
     <link
             rel="stylesheet"
@@ -22,9 +22,9 @@
 <body>
 <div class="app-wrapper">
 
-    <div class="skin-viewer" id="skin-viewer">
+    <canvas class="skin-viewer" id="skin-viewer">
 
-    </div>
+    </canvas>
 
     <div class="skin-settings">
         <div id="notification-container" class="notification-container"></div>
@@ -32,20 +32,11 @@
         <div class="user card">
             <h3>Select skin</h3>
             <div class="input">
-                <input type="text" placeholder="Minecraft username...">
+                <input id="username" type="text" placeholder="Minecraft username...">
                 <input type="file">
             </div>
         </div>
-        <div class="skin-type card">
-            <h3>Select skin type</h3>
-            <div class="input">
-                <select id="skin-type" name="skin-type">
-                    <option>Fat (Steve)</option>
-                    <option>Slim (Alex)</option>
-                </select>
-            </div>
-        </div>
-        <div class="paint-type card">
+        <div class="paint-type card overlay-selector">
             <h3>Select skin overlay</h3>
             <div class="input">
                 <div id="old_man" class="paint-entry">
@@ -77,10 +68,10 @@
         <div class="download">
             <button id="download" class="button shiny"><i class='bx bx-cloud-download'></i> Download</button>
         </div>
+        <a id="credits" href="https://extras.snackbag.net/maidify">Idea from this page</a>
     </div>
 </div>
 
-<script type="module" src="https://toilet-api.botpanel.de/libs/SkibidiSkinRenderer.js"></script>
 <script src="js/script.js"></script>
 
 </body>

@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3300;
 const axios = require('axios');
 
+
 const configFile = fs.readFileSync('config.json', 'utf8');
 const config = JSON.parse(configFile);
 
@@ -26,8 +27,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ limit: '100kb', extended: true }));
+app.use(bodyParser.json({ limit: '100kb' }));
 app.use('/skins', express.static('skins'));
 app.use('/libs', express.static('libs'));
 
@@ -38,7 +39,29 @@ app.post('/upload', upload.single('skinFile'), (req, res) => {
         return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    //image validation
+    if (!req.file.mimetype.startsWith('image/png')) {
+        console.log("Upload request failed: File is not a PNG");
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+                console.error('Error deleting file:', err);
+            } else {
+                console.log('File deleted successfully.');
+            }
+        });
+        return res.status(400).json({ error: 'Uploaded file must be a PNG image' });
+    }
+
+    if (req.file.size > 100 * 1024) {
+        console.log("Upload request failed: File size exceeds 100kb limit");
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+                console.error('Error deleting file:', err);
+            } else {
+                console.log('File deleted successfully.');
+            }
+        });
+        return res.status(400).json({ error: 'Uploaded file size exceeds the limit of 100kb' });
+    }
 
     res.json({ success: true, filename: req.file.filename });
 });

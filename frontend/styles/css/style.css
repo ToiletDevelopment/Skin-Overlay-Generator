@@ -46,7 +46,9 @@ body h1 {
 }
 
 .skin-viewer {
-    z-index: 2;
+    z-index: 5;
+    padding: 20px;
+    margin-top: 50px;
 }
 
 .skin-settings {
@@ -144,7 +146,7 @@ body h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 0.1rem;
-    padding-bottom: 1rem;
+
     padding-right: 1rem;
 }
 
@@ -153,7 +155,7 @@ body h1 {
 }
 
 .paint-type.card {
-    scrollbar-width: none; //firefox
+    scrollbar-width: none; /*firefox ._.*/
 }
 
 .paint-entry {
@@ -167,6 +169,7 @@ body h1 {
     padding: 1rem;
     transition: 0.1s ease-in-out all;
     margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 .paint-entry:hover {
@@ -227,6 +230,7 @@ body h1 {
     transform: scale(0.95);
     cursor: pointer;
 }
+
 
 #download:active {
     opacity: 50%;
@@ -314,3 +318,10 @@ body h1 {
     background-color: #f44336;
 }
 
+#credits {
+    margin: 0;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
