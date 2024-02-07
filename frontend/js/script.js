@@ -14,7 +14,7 @@ const skinViewer = new skinview3d.SkinViewer({
 });
 
 skinViewer.autoRotate = true;
-skinViewer.animation = new skinview3d.WalkingAnimation();
+skinViewer.animation = new skinview3d.RunningAnimation();
 skinViewer.animation.speed = 0.1;
 const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 
@@ -27,6 +27,12 @@ inputField.addEventListener('input', (event) => {
     clearTimeout(timeoutId);
 
     const inputValue = event.target.value;
+
+    if (inputValue.length <= 3) {
+        showNotification("Username is too short!");
+        event.target.value = inputValue.slice(0, 16);
+        return;
+    }
 
     if (inputValue.length > 16) {
         showNotification("Username is too long!");
@@ -84,14 +90,12 @@ function clearFileInput(input) {
 
 paintEntries.forEach(paintEntry => {
     paintEntry.addEventListener('click', () => {
-
         console.log("Converting skin " + paintEntry.id);
 
         if (!fileInput.files || !fileInput.files.length) {
             showNotification("Please upload a skin first!", false);
             return;
         }
-
 
         const formData = new FormData();
         formData.append('skinFile', fileInput.files[0]);
@@ -123,6 +127,12 @@ paintEntries.forEach(paintEntry => {
                                 skinViewer.loadSkin(skinURL);
                                 downloadButton.disabled = false;
                                 showNotification("Skin with overlay " + paintEntry.id + " was generated!", true);
+
+                                paintEntries.forEach(p => {
+                                    p.classList.remove("selected");
+                                });
+
+                                paintEntry.classList.add("selected");
                             } else {
                                 showNotification("Could not generate your skin!", false);
                             }
