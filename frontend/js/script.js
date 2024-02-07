@@ -13,9 +13,13 @@ const skinViewer = new skinview3d.SkinViewer({
     enableControls: true
 });
 
+skinViewer.zoom = 0.8;
+
+skinViewer.controls.enableZoom = false
 skinViewer.autoRotate = true;
 skinViewer.animation = new skinview3d.RunningAnimation();
 skinViewer.animation.speed = 0.1;
+
 const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 
 
