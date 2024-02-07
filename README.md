@@ -5,10 +5,13 @@
 ---
 
 # About this Project
-Skin Overlay Generator is a NodeJS based tool, that allows users to customize their skin with overlay that are based on different themes. The tool can be used to customize skins for different occasions such as April Fools' Day.
+**Skin Overlay Generator** is a NodeJS based tool, that allows users to customize their skin with overlay that are based on different themes.  
+Our tool can be used to customize skins for different occasions such as April Fools' Day or Christmas.
 
-# Screenshots
-![image](https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/82607190-2cab-4a11-9980-813d73cf5f10)
+<details>
+<summary>Screenshots</summary>
+<img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/82607190-2cab-4a11-9980-813d73cf5f10">
+</details>
 
 # Contributors
 **Frontend:**
