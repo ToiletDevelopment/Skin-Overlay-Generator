@@ -32,7 +32,7 @@ uploadButton.addEventListener('click', function() {
 
     const formData = new FormData();
     formData.append('skinFile', fileInput.files[0]);
-    fetch('http://37.114.56.63:3300/upload', {
+    fetch('http://toilet-api.botpanel.de/upload', {
         method: 'POST',
         body: formData
     })
@@ -42,7 +42,7 @@ uploadButton.addEventListener('click', function() {
             if (data.success) {
                 const skinName = data.filename;
 
-                fetch('http://37.114.56.63:3300/generate', {
+                fetch('http://toilet-api.botpanel.de/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
