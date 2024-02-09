@@ -4,14 +4,14 @@
 <br>
 <div align="center">
     <a href="https://github.com/ToiletDevelopment/Skin-Overlay/blob/main/LICENSE.md">
-      <img src="https://img.shields.io/badge/LICENSE-CC02CC" alt="Version">
+      <img src="https://img.shields.io/badge/LICENSE-FFFFFF" alt="Version">
     </a>
       <a href="https://github.com/ToiletDevelopment/Skin-Overlay/stargazers">
-            <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
+         <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
       </a>
-        <a href="https://github.com/ToiletDevelopment/Skin-Overlay/forks">
-              <img alt="GitHub forks" src="https://img.shields.io/github/forks/ToiletDevelopment/Skin-Overlay">
-        </a>
+     <a href="https://github.com/ToiletDevelopment/Skin-Overlay/forks">
+        <img alt="GitHub forks" src="https://img.shields.io/github/forks/ToiletDevelopment/Skin-Overlay">
+     </a>
 </div>
 
 ---
@@ -27,11 +27,11 @@ Our tool can be used to customize skins for different occasions such as April Fo
 
 # Contributors
 **Frontend:**
-- Gebuildet
-- MaximDe
+- [@Gebuildet](https://github.com/gebuildet)
+- [@MaximDe](https://github.com/max1mde)
   
 **Backend:**
-- MaximDe
+- [@MaximDe](https://github.com/max1mde)
 
 **Idea**
-- JX_Snack
+- [JX_Snack's Maidify](https://link.snackbag.net/maidify)
