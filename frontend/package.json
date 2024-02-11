@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "predeploy": "rm -rf dist && parcel build ./*.html --public-url /Skin-Overlay/",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url ./",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
