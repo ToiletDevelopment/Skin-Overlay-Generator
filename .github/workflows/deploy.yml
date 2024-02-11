@@ -24,7 +24,11 @@ jobs:
 
       - name: Build
         working-directory: ./frontend 
-        run: npm run build
+        run: npm run predeploy
+
+      - name: Run
+        working-directory: ./frontend 
+        run: npm run deploy
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
