@@ -33,6 +33,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         working-directory: ./frontend 
-        run: gh-pages -d dist --repo=https://github.com/ToiletDevelopment/Skin-Overlay.git:secrets.GH_TOKEN
+        run: npx gh-pages -d dist --repo=https://github.com/ToiletDevelopment/Skin-Overlay.git:${{ secrets.GH_TOKEN }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
