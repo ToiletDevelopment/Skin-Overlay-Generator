@@ -5,9 +5,9 @@ const inputField = document.getElementById('username');
 downloadButton.disabled = true;
 let skinURL = "";
 let selectedSkinURL = "";
-const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 const fileInput = document.querySelector('input[type="file"]');
 let timeoutId = null;
+const fs = require('fs');
 
 const skinViewer = new skinview3d.SkinViewer({
     canvas: container,
@@ -23,6 +23,24 @@ skinViewer.autoRotate = true;
 skinViewer.animation = new skinview3d.RunningAnimation();
 skinViewer.animation.speed = 0.1;
 
+const overlayFile = fs.readFileSync('overlays.json', 'utf8');
+const overlay = JSON.parse(overlayFile);
+
+const overlayContainer = document.getElementById("overlay_elements");
+
+overlay.forEach(item => {
+    const div = document.createElement("div");
+    div.id = item.id;
+    div.className = "paint-entry";
+    div.innerHTML = `
+            <img src="img/overlays/${item.id}.png" alt="overlay">
+            <h2>${item.title}</h2>
+        `;
+    overlayContainer.appendChild(div);
+});
+
+const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
+
 inputField.addEventListener('input', (event) => {
     clearTimeout(timeoutId);
 
@@ -34,7 +52,7 @@ inputField.addEventListener('input', (event) => {
         return;
     }
 
-    if (/[^a-zA-Z0-9]/.test(inputValue)) {
+    if (/[^a-zA-Z0-9_]/.test(inputValue)) {
         event.target.value = inputValue.replace(/[^a-zA-Z0-9]/g, '');
         showNotification("Only letters and numbers are allowed!");
         return;
@@ -172,6 +190,7 @@ paintEntries.forEach(paintEntry => {
             });
     });
 });
+
 
 downloadButton.addEventListener('click', function() {
     if (skinURL && skinURL !== "") {
