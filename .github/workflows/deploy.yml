@@ -13,6 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set Git identity
+        run: |
+          git config --global user.email "maximdeclient@gmail.com"
+          git config --global user.name "Maxim"
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -26,13 +31,8 @@ jobs:
         working-directory: ./frontend 
         run: npm run predeploy
 
-      - name: Run
-        working-directory: ./frontend 
-        run: npm run deploy
-
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          branch: gh-pages
-          folder: frontend/dist
-          token: ${{ secrets.GH_TOKEN }}
+        working-directory: ./frontend 
+        run: npx gh-pages -d dist --repo=https://github.com/ToiletDevelopment/Skin-Overlay.git:${{ secrets.GH_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
