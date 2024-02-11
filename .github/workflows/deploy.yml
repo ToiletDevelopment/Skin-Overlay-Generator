@@ -31,3 +31,4 @@ jobs:
         with:
           branch: gh-pages
           folder: frontend/dist
+          token: ${{ secrets.GH_TOKEN }}
