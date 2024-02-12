@@ -6,7 +6,8 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-    "predeploy": "rm -rf dist && parcel build index.html --no-source-maps --public-url ./",
+    "clear-build": "rmdir /s /q dist",
+    "predeploy": "parcel build index.html --no-source-maps --public-url ./",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

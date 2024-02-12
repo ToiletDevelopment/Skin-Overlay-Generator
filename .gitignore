@@ -2,3 +2,4 @@ backend/src/config.json
 backend/node_modules
 frontend/node_modules/
 .idea/
+/frontend/package-lock.json
