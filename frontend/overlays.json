@@ -74,5 +74,9 @@
   {
     "id": "frozen",
     "title": "Frozen"
+  },
+  {
+    "id": "outline",
+    "title": "Outline"
   }
 ]
