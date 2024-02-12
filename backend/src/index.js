@@ -30,7 +30,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ limit: '100kb', extended: true }));
 app.use(bodyParser.json({ limit: '100kb' }));
 app.use('/skins', express.static('skins'));
-app.use('/libs', express.static('libs'));
+app.use('/overlays', express.static('overlays'));
 
 app.post('/upload', upload.single('skinFile'), (req, res) => {
     console.log("Received upload request");
