@@ -174,9 +174,9 @@ function clearFileInput(input) {
 
 paintEntries.forEach(paintEntry => {
     paintEntry.addEventListener('click', async () => {
-        showNotification("Converting skin...", 0);
+
         if ((!selectedSkinURL || selectedSkinURL === "") && (!fileInput.files || !fileInput.files.length)) {
-            showNotification("Please upload a skin or type your name in first", false);
+            showNotification("Please upload a skin or type your name in first");
             return;
         }
 
@@ -191,7 +191,7 @@ paintEntries.forEach(paintEntry => {
             showNotification("Please upload a skin or type your name in first");
             return;
         }
-
+        showNotification("Converting skin...", 0);
         formData.append('skinFile', file);
         fetch('https://toilet-api.botpanel.de/upload', {
             method: 'POST',
