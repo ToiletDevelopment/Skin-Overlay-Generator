@@ -319,6 +319,10 @@ body h1 {
     background-color: #f44336;
 }
 
+.notification.info {
+    background-color: #368ff4;
+}
+
 #credits {
     margin: 0;
     position: absolute;

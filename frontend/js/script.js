@@ -133,7 +133,7 @@ inputField.addEventListener('input', (event) => {
         skinViewer.loadSkin(url);
         downloadButton.disabled = true;
         skinURL = "";
-    }, 1000);
+    }, 500);
 
 });
 
@@ -142,13 +142,13 @@ fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (file) {
         if (!file.type.startsWith('image/png')) {
-            showNotification("Selected file is not a PNG.", false);
+            showNotification("Selected file is not a PNG.");
             clearFileInput(event.target);
             return;
         }
 
         if (file.size > 100 * 1024) {
-            showNotification("Selected file size exceeds the 100kb limit.", false);
+            showNotification("Selected file size exceeds the 100kb limit.");
             clearFileInput(event.target);
             return;
         }
@@ -174,8 +174,7 @@ function clearFileInput(input) {
 
 paintEntries.forEach(paintEntry => {
     paintEntry.addEventListener('click', async () => {
-        console.log("Converting skin " + paintEntry.id);
-
+        showNotification("Converting skin...", 0);
         if ((!selectedSkinURL || selectedSkinURL === "") && (!fileInput.files || !fileInput.files.length)) {
             showNotification("Please upload a skin or type your name in first", false);
             return;
@@ -189,7 +188,7 @@ paintEntries.forEach(paintEntry => {
         } else if (fileInput.files && fileInput.files.length) {
             file = fileInput.files[0];
         } else {
-            showNotification("Please upload a skin or type your name in first", false);
+            showNotification("Please upload a skin or type your name in first");
             return;
         }
 
@@ -221,7 +220,7 @@ paintEntries.forEach(paintEntry => {
                                 skinURL = data.url;
                                 skinViewer.loadSkin(skinURL);
                                 downloadButton.disabled = false;
-                                showNotification("Skin with overlay " + paintEntry.id + " was generated!", true);
+                                showNotification("Skin with overlay " + paintEntry.id + " was generated!", 1);
 
                                 paintEntries.forEach(p => {
                                     p.classList.remove("selected");
@@ -229,20 +228,20 @@ paintEntries.forEach(paintEntry => {
 
                                 paintEntry.classList.add("selected");
                             } else {
-                                showNotification("Could not generate your skin!", false);
+                                showNotification("Could not generate your skin!");
                             }
                         })
                         .catch(error => {
                             console.error(error);
-                            showNotification("Could not generate your skin!", false);
+                            showNotification("Could not generate your skin!");
                         });
                 } else {
-                    showNotification("Could not upload your skin!", false);
+                    showNotification("Could not upload your skin!");
                 }
             })
             .catch(error => {
                 console.error(error);
-                showNotification("Could not upload your skin!", false);
+                showNotification("Could not upload your skin!");
             });
     });
 });
@@ -252,7 +251,7 @@ downloadButton.addEventListener('click', function() {
     if (skinURL && skinURL !== "") {
         downloadImage(skinURL);
     } else {
-        showNotification("Could not find requested Skin! Generate a new one.", false);
+        showNotification("Could not find requested Skin! Generate a new one.");
     }
 });
 
@@ -269,7 +268,7 @@ async function downloadImage(imageSrc) {
     document.body.removeChild(link)
 }
 
-function showNotification(message, isSuccess) {
+function showNotification(message, type= 2) {
     const notificationContainer = document.getElementById('notification-container');
     const notificationWrapper = document.createElement('div');
     notificationWrapper.classList.add('notification-wrapper');
@@ -278,10 +277,15 @@ function showNotification(message, isSuccess) {
     notification.classList.add('notification');
     notification.textContent = message;
 
-    if (isSuccess) {
-        notification.classList.add('success');
-    } else {
-        notification.classList.add('error');
+    switch (type) {
+        case 0:
+            notification.classList.add('info');
+        break;
+        case 1:
+            notification.classList.add('success');
+        break;
+        case 2:
+            notification.classList.add('error');
     }
 
     notificationWrapper.appendChild(notification);
