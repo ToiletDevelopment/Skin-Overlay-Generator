@@ -1,11 +1,15 @@
 [
   {
-    "id": "old_man",
-    "title": "Man"
+    "id": "crown",
+    "title": "Crown"
   },
   {
-    "id": "bikini_girl",
-    "title": "Bikini"
+    "id": "space_helmet",
+    "title": "Space Helmet"
+  },
+  {
+    "id": "old_man",
+    "title": "Alter Sack"
   },
   {
     "id": "nextfight",
@@ -16,16 +20,16 @@
     "title": "Uroria"
   },
   {
+    "id": "bunny",
+    "title": "Bunny"
+  },
+  {
     "id": "mojang",
     "title": "Mojang"
   },
   {
-    "id": "crown",
-    "title": "Crown"
-  },
-  {
-    "id": "cat_ears",
-    "title": "Cat Ears"
+    "id": "bikini_girl",
+    "title": "Bikini"
   },
   {
     "id": "santa_hat",
@@ -56,11 +60,19 @@
     "title": "Leather Armor"
   },
   {
-    "id": "bunny",
-    "title": "Bunny"
-  },
-  {
     "id": "pumkin",
     "title": "Pumkin"
+  },
+  {
+    "id": "clown_mask",
+    "title": "Clown Mask"
+  },
+  {
+    "id": "cat_ears",
+    "title": "Cat Ears"
+  },
+  {
+    "id": "frozen",
+    "title": "Frozen"
   }
 ]
