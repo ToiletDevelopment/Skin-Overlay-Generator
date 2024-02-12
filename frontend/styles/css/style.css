@@ -61,7 +61,7 @@ body h1 {
     padding: 2rem;
     max-width: 100%;
 
-    margin-right: 2rem;
+    margin-right: 10rem;
 }
 
 
@@ -137,13 +137,14 @@ body h1 {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-height: 20rem;
+    overflow-y: auto;
 }
 
 .paint-type .input {
     display: flex;
     flex-wrap: wrap;
     gap: 0.1rem;
-
     padding-right: 1rem;
 }
 
@@ -324,4 +325,9 @@ body h1 {
     top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.inner-skin-container {
+    width: 120px;
+    height: 150px;
 }

@@ -1,4 +1,5 @@
 import * as skinview3d from "skinview3d";
+import {WalkingAnimation} from "skinview3d/libs/animation";
 const container = document.getElementById('skin-viewer');
 const downloadButton = document.getElementById('download');
 const inputField = document.getElementById('username');
@@ -9,35 +10,90 @@ const fileInput = document.querySelector('input[type="file"]');
 let timeoutId = null;
 const fs = require('fs');
 
-const skinViewer = new skinview3d.SkinViewer({
-    canvas: container,
-    width: 300,
-    height: 500,
-    skin: "http://textures.minecraft.net/texture/4d97a0121e6e095fdd11e2e5b12a69ca283b8717ba47c56a4add963bbe1bbb5",
-    enableControls: true
-});
-
-skinViewer.zoom = 0.7;
-skinViewer.controls.enableZoom = false
-skinViewer.autoRotate = true;
-skinViewer.animation = new skinview3d.RunningAnimation();
-skinViewer.animation.speed = 0.1;
 
 const overlayFile = fs.readFileSync('overlays.json', 'utf8');
 const overlay = JSON.parse(overlayFile);
-
+const outerOverlayContainer = document.getElementById("outer_overlay_container");
 const overlayContainer = document.getElementById("overlay_elements");
+
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
 
 overlay.forEach(item => {
     const div = document.createElement("div");
     div.id = item.id;
     div.className = "paint-entry";
     div.innerHTML = `
-            <img src="img/overlays/${item.id}.png" alt="overlay">
-            <h2>${item.title}</h2>
-        `;
+        <h2>${item.title}</h2>
+    `;
     overlayContainer.appendChild(div);
+
+    const skinContainer = document.createElement("div");
+    skinContainer.className = "inner-skin-container"
+
+    div.appendChild(skinContainer);
+
+    let skinOverlayPreview;
+
+    function checkVisibility() {
+        const isVisible = isElementInViewport(div);
+        if (isVisible) {
+            if (!skinOverlayPreview) {
+                const skinCanvas = document.createElement("canvas");
+
+                skinContainer.appendChild(skinCanvas);
+
+                skinOverlayPreview = new skinview3d.SkinViewer({
+                    canvas: skinCanvas,
+                    width: 120,
+                    height: 150,
+                    skin: `https://toilet-api.botpanel.de/overlays/${item.id}.png`,
+                    enableControls: true,
+                    model: "default"
+                });
+
+                skinOverlayPreview.zoom = 0.8;
+                skinOverlayPreview.controls.enableZoom = false;
+                skinOverlayPreview.autoRotate = true;
+                skinOverlayPreview.autoRotateSpeed = 0.9;
+                skinOverlayPreview.animation = new skinview3d.WalkingAnimation();
+                skinOverlayPreview.animation.speed = 0.5;
+            }
+        } else {
+            if (skinOverlayPreview) {
+                skinContainer.removeChild(skinOverlayPreview.canvas);
+                skinOverlayPreview.dispose();
+                skinOverlayPreview = null;
+            }
+        }
+    }
+
+    outerOverlayContainer.addEventListener('scroll', checkVisibility);
+    checkVisibility();
 });
+
+
+const skinViewer = new skinview3d.SkinViewer({
+    canvas: container,
+    width: 300,
+    height: 500,
+    skin: "https://toilet-api.botpanel.de/overlays/skin_preview_placeholder/steve.png",
+    enableControls: true
+});
+
+skinViewer.zoom = 0.7;
+skinViewer.controls.enableZoom = false
+skinViewer.autoRotate = true;
+skinViewer.autoRotateSpeed = 0.5;
+skinViewer.animation = new skinview3d.RunningAnimation();
+skinViewer.animation.speed = 0.1;
 
 const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 

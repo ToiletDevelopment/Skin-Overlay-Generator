@@ -1,22 +1,66 @@
 [
   {
     "id": "old_man",
-    "title": "Old Man 💀"
+    "title": "Man"
   },
   {
     "id": "bikini_girl",
-    "title": "Sexy Bikini Girl 😏"
+    "title": "Bikini"
   },
   {
     "id": "nextfight",
-    "title": "NextFight 😎"
+    "title": "NextFight"
   },
   {
     "id": "uroria",
-    "title": "Uroria 🤩"
+    "title": "Uroria"
   },
   {
     "id": "mojang",
-    "title": "Mojang 👁️👁️"
+    "title": "Mojang"
+  },
+  {
+    "id": "crown",
+    "title": "Crown"
+  },
+  {
+    "id": "cat_ears",
+    "title": "Cat Ears"
+  },
+  {
+    "id": "santa_hat",
+    "title": "Santa Hat"
+  },
+  {
+    "id": "netherite_armor",
+    "title": "Netherite Armor"
+  },
+  {
+    "id": "diamond_armor",
+    "title": "Diamond Armor"
+  },
+  {
+    "id": "emerald_armor",
+    "title": "Emerald Armor"
+  },
+  {
+    "id": "iron_armor",
+    "title": "Iron Armor"
+  },
+  {
+    "id": "chain_armor",
+    "title": "Chain Armor"
+  },
+  {
+    "id": "leather_armor",
+    "title": "Leather Armor"
+  },
+  {
+    "id": "bunny",
+    "title": "Bunny"
+  },
+  {
+    "id": "pumkin",
+    "title": "Pumkin"
   }
 ]
