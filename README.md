@@ -20,11 +20,7 @@
 **Skin Overlay** is a NodeJS based tool, that allows users to customize their skin with overlays that are based on different themes.  
 Our tool can be used to customize skins for different occasions such as April Fools' Day or Christmas.
 
-<details>
-<summary>Screenshots</summary>
 <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/2596731e-b4d8-47fa-899c-767fc070e9ea">
-</details>
-
 
 # Contributors
 **Frontend:**
