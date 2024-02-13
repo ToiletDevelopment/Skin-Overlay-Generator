@@ -1,17 +1,11 @@
 <div align="center">
-  <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" width="500px"">
+  <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" width="500px""><br>
 </div>
-<br>
 <div align="center">
-    <a href="https://github.com/ToiletDevelopment/Skin-Overlay/blob/main/LICENSE.md">
-      <img src="https://img.shields.io/badge/LICENSE-FFFFFF" alt="Version">
-    </a>
-      <a href="https://github.com/ToiletDevelopment/Skin-Overlay/stargazers">
-         <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
-      </a>
-     <a href="https://github.com/ToiletDevelopment/Skin-Overlay/forks">
-        <img alt="GitHub forks" src="https://img.shields.io/github/forks/ToiletDevelopment/Skin-Overlay">
-     </a>
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
+    <img alt="GitHub forks" src="https://img.shields.io/github/forks/ToiletDevelopment/Skin-Overlay">
+    <br>
+    <p>https://skins.nextfight.net/</p>
 </div>
 
 ---
@@ -20,10 +14,7 @@
 **Skin Overlay** is a NodeJS based tool, that allows users to customize their skin with overlays that are based on different themes.  
 Our tool can be used to customize skins for different occasions such as April Fools' Day or Christmas.
 
-<details>
-<summary>Screenshots</summary>
-<img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/82607190-2cab-4a11-9980-813d73cf5f10">
-</details>
+<img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/2596731e-b4d8-47fa-899c-767fc070e9ea">
 
 # Contributors
 **Frontend:**
