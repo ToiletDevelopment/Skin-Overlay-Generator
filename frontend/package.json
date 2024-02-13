@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
-    "skinview3d": "3.0.0"
+    "skinview3d": "3.0.0",
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

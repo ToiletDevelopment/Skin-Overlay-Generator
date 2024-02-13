@@ -1,4 +1,6 @@
 const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
@@ -7,6 +9,7 @@ const multer = require('multer');
 const app = express();
 const PORT = process.env.PORT || 3300;
 const axios = require('axios');
+const server = http.createServer(app);
 
 
 const configFile = fs.readFileSync('config.json', 'utf8');
@@ -31,6 +34,25 @@ app.use(bodyParser.urlencoded({ limit: '100kb', extended: true }));
 app.use(bodyParser.json({ limit: '100kb' }));
 app.use('/skins', express.static('skins'));
 app.use('/overlays', express.static('overlays'));
+
+const io = socketIO(server, {
+    cors: {
+        origin: "https://skins.nextfight.net",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["Content-Type"]
+    }
+});
+let viewerCount = 0;
+
+io.on('connection', (socket) => {
+    viewerCount++;
+    io.emit('viewerCount', viewerCount);
+
+    socket.on('disconnect', () => {
+        viewerCount--;
+        io.emit('viewerCount', viewerCount);
+    });
+});
 
 app.post('/upload', upload.single('skinFile'), (req, res) => {
     console.log("Received upload request");
@@ -152,10 +174,6 @@ function applyMoreSaturatedFilter(image) {
     return canvas;
 }
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
-
 
 async function sendWebhook(webhookUrl, title, url) {
     try {
@@ -178,3 +196,7 @@ async function sendWebhook(webhookUrl, title, url) {
         console.error('Error sending webhook:', error.message);
     }
 }
+
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

@@ -1,5 +1,6 @@
 import * as skinview3d from "skinview3d";
 import {WalkingAnimation} from "skinview3d/libs/animation";
+import io from 'socket.io-client';
 const container = document.getElementById('skin-viewer');
 const downloadButton = document.getElementById('download');
 const inputField = document.getElementById('username');
@@ -9,12 +10,16 @@ let selectedSkinURL = "";
 const fileInput = document.querySelector('input[type="file"]');
 let timeoutId = null;
 const fs = require('fs');
-
+const socket = io('https://toilet-api.botpanel.de');
 
 const overlayFile = fs.readFileSync('overlays.json', 'utf8');
 const overlay = JSON.parse(overlayFile);
 const outerOverlayContainer = document.getElementById("outer_overlay_container");
 const overlayContainer = document.getElementById("overlay_elements");
+
+socket.on('viewerCount', (count) => {
+    document.getElementById('viewerCount').textContent = count;
+});
 
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
