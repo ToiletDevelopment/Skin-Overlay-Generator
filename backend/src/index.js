@@ -68,10 +68,22 @@ app.post('/upload', upload.single('skinFile'), (req, res) => {
 
 app.post('/generate', async (req, res) => {
     console.log("Received generation request...");
-    const { skinName, overlayName } = req.body;
+    const { skinName, overlayName, filter } = req.body;
     console.log("Received generation request with overlay: " + overlayName);
 
-    const skinImage = await loadImage(`skins/${skinName}`);
+    let skinImage = await loadImage(`skins/${skinName}`);
+
+    switch (filter) {
+        case 'black_and_white':
+            skinImage = applyBlackAndWhiteFilter(skinImage);
+            break;
+        case 'saturated':
+            skinImage = applyMoreSaturatedFilter(skinImage);
+            break;
+        default:
+            break;
+    }
+
     const overlayImage = await loadImage(`overlays/${overlayName}.png`);
 
     const canvas = createCanvas(64, 64);
@@ -99,6 +111,46 @@ app.post('/generate', async (req, res) => {
         }, 60000);
     });
 });
+
+function applyBlackAndWhiteFilter(image) {
+    const canvas = createCanvas(image.width, image.height);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0);
+
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+        const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i] = brightness;
+        data[i + 1] = brightness;
+        data[i + 2] = brightness;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    return canvas;
+}
+
+function applyMoreSaturatedFilter(image) {
+
+    const canvas = createCanvas(image.width, image.height);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(image, 0, 0);
+
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+
+        data[i + 1] = Math.min(data[i + 1] * 1.5, 255);
+        data[i + 2] = Math.min(data[i + 2] * 1.5, 255);
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+
+    return canvas;
+}
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

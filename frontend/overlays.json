@@ -61,7 +61,8 @@
   },
   {
     "id": "pumkin",
-    "title": "Pumkin"
+    "title": "Pumkin",
+    "filter": "saturated"
   },
   {
     "id": "clown_mask",
@@ -77,6 +78,7 @@
   },
   {
     "id": "outline",
-    "title": "Outline"
+    "title": "Outline",
+    "filter": "black_and_white"
   }
 ]

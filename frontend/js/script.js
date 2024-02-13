@@ -28,7 +28,8 @@ function isElementInViewport(el) {
 
 overlay.forEach(item => {
     const div = document.createElement("div");
-    div.id = item.id;
+    const filter = item.filter ? item.filter : "none";
+    div.id = item.id + ":" + filter;
     div.className = "paint-entry";
     div.innerHTML = `
         <h2>${item.title}</h2>
@@ -47,8 +48,13 @@ overlay.forEach(item => {
         if (isVisible) {
             if (!skinOverlayPreview) {
                 const skinCanvas = document.createElement("canvas");
-
+                skinCanvas.className = "skin_canvas";
                 skinContainer.appendChild(skinCanvas);
+
+                setTimeout(() => {
+                    skinCanvas.style.opacity = '1';
+                    skinCanvas.style.transform = 'scale(1, 1)';
+                }, 50);
 
                 skinOverlayPreview = new skinview3d.SkinViewer({
                     canvas: skinCanvas,
@@ -210,7 +216,8 @@ paintEntries.forEach(paintEntry => {
                         },
                         body: JSON.stringify({
                             skinName: skinName,
-                            overlayName: paintEntry.id
+                            overlayName: paintEntry.id.split(":")[0],
+                            filter: paintEntry.id.split(":")[1]
                         })
                     })
                         .then(response => response.json())
@@ -220,7 +227,7 @@ paintEntries.forEach(paintEntry => {
                                 skinURL = data.url;
                                 skinViewer.loadSkin(skinURL);
                                 downloadButton.disabled = false;
-                                showNotification("Skin with overlay " + paintEntry.id + " was generated!", 1);
+                                showNotification("Skin with overlay " + paintEntry.id.split(":")[0] + " was generated!", 1);
 
                                 paintEntries.forEach(p => {
                                     p.classList.remove("selected");
