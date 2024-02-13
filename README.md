@@ -22,8 +22,9 @@ Our tool can be used to customize skins for different occasions such as April Fo
 
 <details>
 <summary>Screenshots</summary>
-<img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/82607190-2cab-4a11-9980-813d73cf5f10">
+<img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/114857048/2596731e-b4d8-47fa-899c-767fc070e9ea">
 </details>
+
 
 # Contributors
 **Frontend:**
