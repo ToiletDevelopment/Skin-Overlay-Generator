@@ -1,5 +1,4 @@
 import * as skinview3d from "skinview3d";
-import {WalkingAnimation} from "skinview3d/libs/animation";
 import io from 'socket.io-client';
 const container = document.getElementById('skin-viewer');
 const downloadButton = document.getElementById('download');
@@ -21,6 +20,14 @@ socket.on('viewerCount', (count) => {
     document.getElementById('viewerCount').textContent = count;
 });
 
+window.onclose = function (e) {
+    socket.disconnect();
+};
+
+window.onbeforeunload = function(e) {
+    socket.disconnect();
+};
+
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
     return (
@@ -31,64 +38,71 @@ function isElementInViewport(el) {
     );
 }
 
-overlay.forEach(item => {
-    const div = document.createElement("div");
-    const filter = item.filter ? item.filter : "none";
-    div.id = item.id + ":" + filter;
-    div.className = "paint-entry";
-    div.innerHTML = `
+(async function () {
+    const skinOverlayPreview = new skinview3d.SkinViewer({
+        width: 120,
+        height: 230,
+        renderPaused: true,
+        preserveDrawingBuffer: true,
+        model: "default"
+    });
+
+
+
+    overlay.forEach(item => {
+        const div = document.createElement("div");
+        const filter = item.filter ? item.filter : "none";
+        div.id = item.id + ":" + filter;
+        div.className = "paint-entry";
+        div.innerHTML = `
         <h2>${item.title}</h2>
     `;
-    overlayContainer.appendChild(div);
+        overlayContainer.appendChild(div);
 
-    const skinContainer = document.createElement("div");
-    skinContainer.className = "inner-skin-container"
+        const skinContainer = document.createElement("div");
+        skinContainer.className = "inner-skin-container"
+        div.appendChild(skinContainer);
 
-    div.appendChild(skinContainer);
 
-    let skinOverlayPreview;
+        const resolvedImage = new Image();
+        resolvedImage.crossOrigin = "anonymouse";
+        resolvedImage.src = `https://toilet-api.botpanel.de/overlays/${item.id}.png`;
 
-    function checkVisibility() {
-        const isVisible = isElementInViewport(div);
-        if (isVisible) {
-            if (!skinOverlayPreview) {
-                const skinCanvas = document.createElement("canvas");
-                skinCanvas.className = "skin_canvas";
-                skinContainer.appendChild(skinCanvas);
+        resolvedImage.onload = async function () {
 
-                setTimeout(() => {
-                    skinCanvas.style.opacity = '1';
-                    skinCanvas.style.transform = 'scale(1, 1)';
-                }, 50);
+            skinOverlayPreview.camera.rotation.x = -0.62;
+            skinOverlayPreview.camera.rotation.y = 0.534;
+            skinOverlayPreview.camera.rotation.z = 0.348;
+            skinOverlayPreview.camera.position.x = 30.5;
+            skinOverlayPreview.camera.position.y = 32.0;
+            skinOverlayPreview.camera.position.z = 42.0;
 
-                skinOverlayPreview = new skinview3d.SkinViewer({
-                    canvas: skinCanvas,
-                    width: 120,
-                    height: 150,
-                    skin: `https://toilet-api.botpanel.de/overlays/${item.id}.png`,
-                    enableControls: true,
-                    model: "default"
-                });
-
-                skinOverlayPreview.zoom = 0.8;
-                skinOverlayPreview.controls.enableZoom = false;
-                skinOverlayPreview.autoRotate = true;
-                skinOverlayPreview.autoRotateSpeed = 0.9;
-                skinOverlayPreview.animation = new skinview3d.WalkingAnimation();
-                skinOverlayPreview.animation.speed = 0.5;
+            if(item.flipped) {
+                skinOverlayPreview.camera.position.x *= -1;
+                skinOverlayPreview.camera.position.z *= -1;
+                skinOverlayPreview.camera.lookAt(0, 0, 0);
             }
-        } else {
-            if (skinOverlayPreview) {
-                skinContainer.removeChild(skinOverlayPreview.canvas);
-                skinOverlayPreview.dispose();
-                skinOverlayPreview = null;
-            }
-        }
-    }
 
-    outerOverlayContainer.addEventListener('scroll', checkVisibility);
-    checkVisibility();
-});
+
+            await skinOverlayPreview.loadSkin(resolvedImage);
+            skinOverlayPreview.render();
+            const image = skinOverlayPreview.canvas.toDataURL();
+            const imgElement = document.createElement("img");
+            imgElement.className = "skin_canvas";
+            imgElement.src = image;
+            imgElement.width = skinOverlayPreview.width;
+            imgElement.height = skinOverlayPreview.height;
+            setTimeout(() => {
+                imgElement.style.opacity = '1';
+                imgElement.style.transform = 'scale(1, 1)translateY(-2.5rem)';
+            }, 50);
+            skinContainer.appendChild(imgElement);
+        };
+
+    });
+    skinOverlayPreview.dispose();
+})();
+
 
 
 const skinViewer = new skinview3d.SkinViewer({
@@ -104,7 +118,16 @@ skinViewer.controls.enableZoom = false
 skinViewer.autoRotate = true;
 skinViewer.autoRotateSpeed = 0.5;
 skinViewer.animation = new skinview3d.RunningAnimation();
-skinViewer.animation.speed = 0.1;
+skinViewer.animation.speed = 0.7;
+
+setTimeout(() => {
+    container.style.opacity = '1';
+    container.style.transform = 'translate(0rem, 0rem)';
+}, 50);
+
+setTimeout(() => {
+    skinViewer.animation.speed = 0.1;
+}, 1000 * 1.6);
 
 const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 
@@ -292,10 +315,10 @@ function showNotification(message, type= 2) {
     switch (type) {
         case 0:
             notification.classList.add('info');
-        break;
+            break;
         case 1:
             notification.classList.add('success');
-        break;
+            break;
         case 2:
             notification.classList.add('error');
     }

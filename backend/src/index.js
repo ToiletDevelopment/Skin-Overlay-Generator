@@ -42,6 +42,7 @@ const io = socketIO(server, {
         allowedHeaders: ["Content-Type"]
     }
 });
+
 let viewerCount = 0;
 
 io.on('connection', (socket) => {
