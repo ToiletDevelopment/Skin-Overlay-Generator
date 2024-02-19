@@ -58,7 +58,7 @@ body h1 {
 }
 
 #skin-viewer {
-    transform: translate(-30rem, 0rem);
+    transform: translate(-40rem, 0rem);
     transition: transform 2s, opacity 4s;
     opacity: 0;
 }
@@ -209,6 +209,35 @@ h2 {
     font-weight: 500;
 }
 
+.tag-button {
+    display:inline-block;
+    border: none;
+    box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    background-color: #b5a9ef;
+    padding: 4px 7px;
+    color: white;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    text-decoration: none;
+    margin-top: 1rem;
+    margin-right: 0.3rem;
+    transition: all 0.3s;
+}
+
+.tag-button:hover {
+    background-color: #8d78f4;
+    transform: scale(0.97);
+    cursor: pointer;
+}
+
+.selected-tag {
+    border: #ac94f6 solid 1px;
+    background-color: #6B4EFF;
+}
+
 .button {
     border: none;
     box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
@@ -259,15 +288,12 @@ h2 {
     display:inline-block;
     border: none;
     box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
     background: rgb(107,78,255);
     background: linear-gradient(90deg, rgba(107,78,255,1) 0%, rgba(196,186,255,1) 25%, rgba(107,78,255,1) 50%);
     background-size: 25rem 2rem;
     background-position: -190px 0%;
-    padding: 15px 25px;
     color: white;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-size: 1.05rem;
     font-weight: 400;
     line-height: 1.5rem;
     transition: 0.1s all;

@@ -1,78 +1,96 @@
 [
   {
     "id": "crown",
-    "title": "Crown"
+    "title": "Crown",
+    "tags": ["hat"]
   },
   {
     "id": "space_helmet",
-    "title": "Space Helmet"
+    "title": "Space Helmet",
+    "tags": ["hat"]
   },
   {
     "id": "old_man",
-    "title": "Old Man"
+    "title": "Old Man",
+    "tags": ["hat"]
   },
   {
     "id": "nextfight",
     "title": "NextFight",
-    "flipped": true
+    "flipped": true,
+    "tags": ["logo"]
   },
   {
     "id": "uroria",
     "title": "Uroria",
-    "flipped": true
+    "flipped": true,
+    "tags": ["logo"]
   },
   {
     "id": "bunny",
-    "title": "Bunny"
+    "title": "Bunny",
+    "tags": ["suit", "animal"]
   },
   {
     "id": "mojang",
-    "title": "Mojang"
+    "title": "Mojang",
+    "tags": ["logo"]
   },
   {
     "id": "bikini_girl",
-    "title": "Bikini"
+    "title": "Bikini",
+    "tags": ["nsfw"]
   },
   {
     "id": "santa_hat",
-    "title": "Santa Hat"
+    "title": "Santa Hat",
+    "tags": ["hat", "christmas"]
   },
   {
     "id": "netherite_armor",
-    "title": "Netherite Armor"
+    "title": "Netherite Armor",
+    "tags": ["armor"]
   },
   {
     "id": "diamond_armor",
-    "title": "Diamond Armor"
+    "title": "Diamond Armor",
+    "tags": ["armor"]
   },
   {
     "id": "emerald_armor",
-    "title": "Emerald Armor"
+    "title": "Emerald Armor",
+    "tags": ["armor", "meme"]
   },
   {
     "id": "iron_armor",
-    "title": "Iron Armor"
+    "title": "Iron Armor",
+    "tags": ["armor"]
   },
   {
     "id": "chain_armor",
-    "title": "Chain Armor"
+    "title": "Chain Armor",
+    "tags": ["armor"]
   },
   {
     "id": "leather_armor",
-    "title": "Leather Armor"
+    "title": "Leather Armor",
+    "tags": ["armor"]
   },
   {
     "id": "pumkin",
     "title": "Pumkin",
-    "filter": "saturated"
+    "filter": "saturated",
+    "tags": ["halloween"]
   },
   {
     "id": "clown_mask",
-    "title": "Clown Mask"
+    "title": "Clown Mask",
+    "tags": ["mask", "halloween"]
   },
   {
     "id": "cat_ears",
-    "title": "Cat Ears"
+    "title": "Cat Ears",
+    "tags": ["mask"]
   },
   {
     "id": "frozen",
@@ -80,7 +98,21 @@
   },
   {
     "id": "outline",
-    "title": "Outline",
-    "filter": "black_and_white"
+    "title": "Outline"
+  },
+  {
+    "id": "red_arm",
+    "title": "Red arm"
+  },
+  {
+    "id": "gigachad",
+    "title": "Gigachad",
+    "filter": "black_and_white",
+    "tags": ["meme"]
+  },
+  {
+    "id": "nacked",
+    "title": "Nacked",
+    "tags": ["nsfw"]
   }
 ]

@@ -11,11 +11,12 @@ let timeoutId = null;
 const fs = require('fs');
 const socket = io('https://toilet-api.botpanel.de');
 
-const overlayFile = fs.readFileSync('overlays.json', 'utf8');
-const overlay = JSON.parse(overlayFile);
+const overlay = JSON.parse(fs.readFileSync('overlays.json', 'utf8'));
+const tags = JSON.parse(fs.readFileSync('tags.json', 'utf8'));
+
 const outerOverlayContainer = document.getElementById("outer_overlay_container");
 const overlayContainer = document.getElementById("overlay_elements");
-
+const tagsContainer = document.getElementById("tag-container");
 socket.on('viewerCount', (count) => {
     document.getElementById('viewerCount').textContent = count;
 });
@@ -38,7 +39,72 @@ function isElementInViewport(el) {
     );
 }
 
-(async function () {
+const tagElements = [];
+let tagAll;
+let overlayEntryElements = {};
+
+
+tags.forEach(item => {
+    const button = document.createElement("btn");
+    button.className = "tag-button"
+    button.id = "tag-" + item.toLowerCase();
+    button.textContent = item;
+    tagsContainer.appendChild(button);
+
+    const tag = item.toLowerCase();
+    if(tag === "all") {
+        button.classList.add("selected-tag");
+        tagAll = button;
+    } else {
+        tagElements.push(button);
+    }
+
+    button.addEventListener("click", async () => {
+        if(button.classList.contains("selected-tag")) {
+            button.classList.remove("selected-tag");
+
+            let activeTags = "";
+            Array.from(tagsContainer.children).forEach(activeTag => {
+                if(activeTag.classList.contains("selected-tag")) activeTags += activeTag.id.replace("tag-", "") + " ";
+            });
+            console.log(activeTags);
+            loadPreviews(activeTags);
+        } else {
+            button.classList.add("selected-tag");
+            if(tag !== "all") {
+                tagAll.classList.remove("selected-tag");
+
+                let activeTags = "";
+                Array.from(tagsContainer.children).forEach(activeTag => {
+                    if(activeTag.classList.contains("selected-tag")) activeTags += activeTag.id.replace("tag-", "") + " ";
+                });
+                console.log(activeTags);
+                loadPreviews(activeTags);
+            } else {
+                tagElements.forEach(item => {
+                    item.classList.remove("selected-tag");
+                });
+                loadPreviews("all");
+            }
+        }
+    });
+});
+
+loadPreviews("all");
+
+function removeAllChildren(node) {
+    while (node.firstChild) {
+        removeAllChildren(node.firstChild);
+        node.removeChild(node.firstChild);
+    }
+}
+
+async function loadPreviews(tags) {
+
+    if (overlayContainer) {
+        removeAllChildren(overlayContainer);
+    }
+
     const skinOverlayPreview = new skinview3d.SkinViewer({
         width: 120,
         height: 230,
@@ -47,9 +113,14 @@ function isElementInViewport(el) {
         model: "default"
     });
 
-
-
     overlay.forEach(item => {
+        let shouldBeRendered = false;
+        tags.split(" ").forEach( tag => {
+            if((!item.tags && tag === "all") || item.tags.includes(tag) || (tag === "all" && tag !== "nsfw")) shouldBeRendered = true;
+        });
+        if(!shouldBeRendered) {
+            return;
+        }
         const div = document.createElement("div");
         const filter = item.filter ? item.filter : "none";
         div.id = item.id + ":" + filter;
@@ -58,7 +129,7 @@ function isElementInViewport(el) {
         <h2>${item.title}</h2>
     `;
         overlayContainer.appendChild(div);
-
+        addPreviewSkinClickListener(div);
         const skinContainer = document.createElement("div");
         skinContainer.className = "inner-skin-container"
         div.appendChild(skinContainer);
@@ -101,7 +172,7 @@ function isElementInViewport(el) {
 
     });
     skinOverlayPreview.dispose();
-})();
+}
 
 
 
@@ -129,7 +200,6 @@ setTimeout(() => {
     skinViewer.animation.speed = 0.1;
 }, 1000 * 1.6);
 
-const paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
 
 inputField.addEventListener('input', (event) => {
     clearTimeout(timeoutId);
@@ -206,7 +276,7 @@ function clearFileInput(input) {
     input.value = '';
 }
 
-paintEntries.forEach(paintEntry => {
+function addPreviewSkinClickListener(paintEntry) {
     paintEntry.addEventListener('click', async () => {
 
         if ((!selectedSkinURL || selectedSkinURL === "") && (!fileInput.files || !fileInput.files.length)) {
@@ -279,7 +349,7 @@ paintEntries.forEach(paintEntry => {
                 showNotification("Could not upload your skin!");
             });
     });
-});
+}
 
 
 downloadButton.addEventListener('click', function() {
