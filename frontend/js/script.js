@@ -17,6 +17,9 @@ const tags = JSON.parse(fs.readFileSync('tags.json', 'utf8'));
 const outerOverlayContainer = document.getElementById("outer_overlay_container");
 const overlayContainer = document.getElementById("overlay_elements");
 const tagsContainer = document.getElementById("tag-container");
+
+let paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
+
 socket.on('viewerCount', (count) => {
     document.getElementById('viewerCount').textContent = count;
 });
@@ -67,7 +70,6 @@ tags.forEach(item => {
             Array.from(tagsContainer.children).forEach(activeTag => {
                 if(activeTag.classList.contains("selected-tag")) activeTags += activeTag.id.replace("tag-", "") + " ";
             });
-            console.log(activeTags);
             loadPreviews(activeTags);
         } else {
             button.classList.add("selected-tag");
@@ -78,7 +80,6 @@ tags.forEach(item => {
                 Array.from(tagsContainer.children).forEach(activeTag => {
                     if(activeTag.classList.contains("selected-tag")) activeTags += activeTag.id.replace("tag-", "") + " ";
                 });
-                console.log(activeTags);
                 loadPreviews(activeTags);
             } else {
                 tagElements.forEach(item => {
@@ -87,6 +88,7 @@ tags.forEach(item => {
                 loadPreviews("all");
             }
         }
+
     });
 });
 
@@ -116,7 +118,8 @@ async function loadPreviews(tags) {
     overlay.forEach(item => {
         let shouldBeRendered = false;
         tags.split(" ").forEach( tag => {
-            if((!item.tags && tag === "all") || item.tags.includes(tag) || (tag === "all" && tag !== "nsfw")) shouldBeRendered = true;
+            const lowerTag = tag.toLowerCase();
+            if((!item.tags && lowerTag === "all") || item.tags.includes(lowerTag) || (lowerTag === "all" && lowerTag !== "nsfw")) shouldBeRendered = true;
         });
         if(!shouldBeRendered) {
             return;
@@ -199,6 +202,7 @@ setTimeout(() => {
 setTimeout(() => {
     skinViewer.animation.speed = 0.1;
 }, 1000 * 1.6);
+
 
 
 inputField.addEventListener('input', (event) => {
@@ -326,7 +330,7 @@ function addPreviewSkinClickListener(paintEntry) {
                                 skinViewer.loadSkin(skinURL);
                                 downloadButton.disabled = false;
                                 showNotification("Skin with overlay " + paintEntry.id.split(":")[0] + " was generated!", 1);
-
+                                paintEntries = document.querySelectorAll('.paint-type.card .paint-entry');
                                 paintEntries.forEach(p => {
                                     p.classList.remove("selected");
                                 });

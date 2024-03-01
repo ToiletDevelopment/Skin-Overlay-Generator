@@ -114,5 +114,15 @@
     "id": "nacked",
     "title": "Nacked",
     "tags": ["nsfw"]
+  },
+  {
+    "id": "sunglasses",
+    "title": "Sunglasses",
+    "tags": ["meme"]
+  },
+  {
+    "id": "3dglasses",
+    "title": "3D glasses",
+    "tags": ["meme"]
   }
 ]
