@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/ToiletDevelopment/Skin-Overlay/assets/77403194/d774ce1f-4166-49e9-887a-56d13d0da432" width="500px""><br>
+  <img src="https://github.com/ToiletDevelopment/Skin-Overlay-Generator/assets/114857048/aa7c4845-05e7-496d-b7b5-46f65fd40666" width="500px""><br>
 </div>
 <div align="center">
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/ToiletDevelopment/Skin-Overlay">
