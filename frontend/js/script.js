@@ -9,7 +9,7 @@ let selectedSkinURL = "";
 const fileInput = document.querySelector('input[type="file"]');
 let timeoutId = null;
 const fs = require('fs');
-const socket = io('https://toilet-api.botpanel.de');
+const socket = io('http://185.245.61.209:3300');
 
 const overlay = JSON.parse(fs.readFileSync('overlays.json', 'utf8'));
 const tags = JSON.parse(fs.readFileSync('tags.json', 'utf8'));
